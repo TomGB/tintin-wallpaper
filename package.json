@@ -12,5 +12,8 @@
   "devDependencies": {
     "browserify": "^16.2.3",
     "watchify": "^3.11.1"
+  },
+  "dependencies": {
+    "shuffle-array": "^1.0.1"
   }
 }

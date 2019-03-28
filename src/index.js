@@ -1,4 +1,5 @@
-const fileNames = require('./fileNames')
+const shuffleArray = require('shuffle-array')
+const fileNames = shuffleArray(require('./fileNames'))
 
 const loadImage = async url => {
     const thisImage = new Image()
