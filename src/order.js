@@ -14,24 +14,35 @@ const loadImage = async url => {
     return thisImage
 }
 
-const width = 1000,
-      height = 1000,
-      numCols = 5,
-      imageWidth = width / numCols,
-      barHeight = (height - imageWidth * 4) / 2
+const width = window.innerWidth
+const height = window.innerHeight
+const numCols = 5
+const imageWidth = width / numCols
+const barHeight = (height - imageWidth * 4) / 2
 
-const draw = ctx => images => {
-    images.forEach((image, index) => {
-        ctx.drawImage(
-            image,
-            // locX, locY
-            index % numCols * imageWidth,
-            Math.floor(index / numCols) * imageWidth + barHeight,
-            // width, height
-            imageWidth,
-            width / numCols
-        );
-    })
+const draw = ctx => imageGrid => {
+    imageGrid.forEach((row, yi) =>
+        row.forEach((image, xi) => {
+            if (!image) {
+                ctx.fillRect(
+                    xi * imageWidth - 1,
+                    yi * imageWidth + barHeight - 1,
+                    imageWidth + 2,
+                    width / numCols + 2
+                );
+                return
+            }
+            ctx.drawImage(
+                image,
+                // locX, locY
+                xi * imageWidth,
+                yi * imageWidth + barHeight,
+                // width, height
+                imageWidth,
+                width / numCols
+            );
+        })
+    )
 }
 
 const start = async () => {
@@ -49,13 +60,12 @@ const start = async () => {
 
     const images = await Promise.all(loadingFiles)
 
-    draw(ctx)(images)
 
     const game = newGame()
 
-    game.setGrid(Array(19).fill(1).map((_, i) => i))
+    game.setGrid(images)
 
-    game.getGrid()
+    draw(ctx)(game.getGrid())
 
     window.addEventListener('keydown', (e) => {
         const keyActions = {
@@ -68,6 +78,8 @@ const start = async () => {
         const action = keyActions[e.key]
 
         if (action) game.input(action)
+
+        draw(ctx)(game.getGrid())
     })
 }
 
