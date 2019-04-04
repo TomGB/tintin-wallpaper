@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "watchify src/index.js -o build/bundle.js"
+    "dev": "watchify src/index.js -o build/bundle.js",
+    "order": "watchify src/order.js -o build/order-bundle.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "watchify": "^3.11.1"
   },
   "dependencies": {
+    "imgur": "^0.3.1",
     "shuffle-array": "^1.0.1"
   }
 }

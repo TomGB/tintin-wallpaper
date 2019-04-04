@@ -17,8 +17,8 @@ const names = [
     '4 - D18ou7i.jpg',
     '5 - 6CtVc03.jpg',
     '6 - nTrEugv.jpg',
-    '7 - nYFdwBA.jpg',
-    '8 - UUt8J9E.jpg',
+    // '7 - nYFdwBA.jpg',
+    // '8 - UUt8J9E.jpg',
     '9 - 6jDvlki.jpg'
 ]
 
