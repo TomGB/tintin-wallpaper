@@ -22,8 +22,8 @@ const game = () => {
   }
 
   const move = (x, y) => {
-    grid[emptySpace.y][emptySpace.x] = grid[y, x]
-    grid[y, x] = null
+    grid[emptySpace.y][emptySpace.x] = grid[y][x]
+    grid[y][x] = null
     emptySpace.x = x
     emptySpace.y = y
   }
@@ -37,6 +37,14 @@ const game = () => {
       down: () => {
         if (emptySpace.y === 0) return console.log('cant')
         move(emptySpace.x, emptySpace.y - 1)
+      },
+      left: () => {
+        if (emptySpace.x === numCols - 1) return console.log('cant')
+        move(emptySpace.x + 1, emptySpace.y)
+      },
+      right: () => {
+        if (emptySpace.x === 0) return console.log('cant')
+        move(emptySpace.x - 1, emptySpace.y)
       },
     }
     const action = actions[dir]
